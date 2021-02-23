@@ -46,8 +46,7 @@ void SnakeCollisionLogic()
 		gameOver = true;
 	}
 
-	// tail collision case
-	// TODO
+
 }
 
 void PrintSnakeForTroubleshooting() {
@@ -80,10 +79,6 @@ void AddHeadPositionToTailArray()
 	while (tailY.size() > unsigned(score)) {
 		tailY.pop_front();
 	}
-
-	//if (tailX.size() > 0 && tailX[0] >= unsigned(1)) {
-	//	tailX.push_back(1);
-	//}
 }
 
 void gameLevel()
@@ -101,14 +96,14 @@ void gameLevel()
 				}
 				else {
 					SnakeCollisionLogic();
-					if (j == y && i == x) {
+					if (j == y && i == x) { //caseForSnakeHead()
 						std::cout << "S";
 						AddHeadPositionToTailArray();
 					}
-					else if (i == fruitX && j == fruitY) {
+					else if (i == fruitX && j == fruitY) { //caseForFruit()
 						std::cout << "F";
 					}
-					else if (fruitX == x && fruitY == y) {
+					else if (fruitX == x && fruitY == y) { //caseForFruitEaten()
 						score++;
 						fruitX = rand() % (i_max - 2) + 1;
 						fruitY = rand() % (j_max - 2) + 1;
@@ -121,13 +116,7 @@ void gameLevel()
 							}
 						}
 						if (isSnakeHere) {
-							if (tailX.front() == i && tailY.front() == j) {
-								std::cout << "S";
-							}
-							else {
-								std::cout << "T";
-							}
-							
+							std::cout << "T";	
 						}
 						else {
 						std::cout << " ";
@@ -188,13 +177,6 @@ void Logic()
 
 int main() 
 {
-	std::cout << "Enter an integer: ";
-
-	int num{ 0 };
-	std::cin >> num;
-
-	std::cout << "Your integer doubled is " << num * 2 << "\n";
-
 	Setup();
 
 	while (!gameOver) {
